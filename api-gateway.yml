@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: movieRoute
+          uri: https://avmovieservice.azurewebsites.net/
+        #  uri: lb://MOVIE-SERVICE
+          predicates:
+            - Path=/movie/**
+        - id: catalogRoute
+          uri: https://avcatalogservice.azurewebsites.net/
+        #  uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog/**
